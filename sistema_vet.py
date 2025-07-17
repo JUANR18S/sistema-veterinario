@@ -87,13 +87,22 @@ class SistemaVeterinario:
             print("❌ Ups, eso no parece un número válido. Intenta de nuevo.")
             return
         except IndexError:
-            print("❌ El número que ingresaste no corresponde.")
+            print(
+                "❌ El número que ingresaste no corresponde a ninguna mascota."
+            )
             return
 
         print(f"\n✍️ Registrando consulta para {mascota.nombre}:")
         fecha = input("📅 Fecha (dd/mm/aaaa): ").strip()
         motivo = input("🩺 Motivo de la consulta: ").strip()
         diagnostico = input("🧾 Diagnóstico: ").strip()
+
+        if not fecha or not motivo or not diagnostico:
+            print(
+                "⚠️ Todos los campos son obligatorios para "
+                "registrar la consulta."
+            )
+            return
 
         consulta = Consulta(fecha, motivo, diagnostico, mascota)
         mascota.agregar_consulta(consulta)
