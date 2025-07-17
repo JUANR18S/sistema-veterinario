@@ -219,6 +219,7 @@ class SistemaVeterinario:
             print(mascota)
 
     def ver_historial(self):
+
         if not self.mascotas:
             print("🐾 Aún no tienes pacientes registrados.")
             return
@@ -244,3 +245,15 @@ class SistemaVeterinario:
         else:
             for consulta in mascota.consultas:
                 print(consulta)
+
+    def guardar_consultas_json(self):
+        try:
+            with open('data/consultas.json', 'w') as f:
+                json.dump(
+                    [consulta.to_dict() for consulta in self.consultas],
+                    f,
+                    indent=4
+                )
+            logging.info("Consultas guardadas exitosamente en JSON.")
+        except Exception as e:
+            logging.error(f"Error al guardar consultas en JSON: {e}")

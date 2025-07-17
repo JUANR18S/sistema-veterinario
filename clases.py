@@ -111,9 +111,10 @@ class Consulta:
 
     def to_dict(self):
         return {
+            "mascota": self.mascota.nombre,
             "fecha": self.fecha,
-            "motivo": self.motivo,
-            "diagnostico": self.diagnostico
+            "diagnostico": self.diagnostico,
+            "tratamiento": self.tratamiento
         }
 
     @classmethod
