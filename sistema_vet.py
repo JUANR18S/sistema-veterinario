@@ -138,7 +138,7 @@ class SistemaVeterinario:
             return
 
         mascota = Mascota(
-            nombre_mascota, especie, raza, edad, peso, motivo, documento
+            nombre_mascota, especie, raza, edad, peso, motivo, dueno
         )
         self.mascotas.append(mascota)
 

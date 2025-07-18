@@ -6,8 +6,6 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# Clases del sistema veterinario
-
 
 class Dueno:
     def __init__(self, nombre, documento, correo, telefono):
@@ -39,21 +37,20 @@ class Dueno:
 
 
 class Mascota:
-    def __init__(self, nombre, especie, raza, edad, peso, motivo, dueno):
+    def __init__(self, nombre, especie, raza,
+                 edad, peso, motivo, documento_dueno):
         self.nombre = nombre
         self.especie = especie
         self.raza = raza
         self.edad = edad
         self.peso = peso
         self.motivo = motivo
-        self.documento_dueno = dueno.documento
+        self.documento_dueno = documento_dueno
         self.consultas = []
 
         logging.info(
-            (
-                f"Mascota creada: {self.nombre} ({self.especie}) - "
-                f"Dueño: {self.dueno.nombre}"
-            )
+            f"Mascota creada: {self.nombre} ({self.especie}) - "
+            f"Documento dueño: {self.documento_dueno}"
         )
 
     def agregar_consulta(self, consulta):
@@ -63,7 +60,7 @@ class Mascota:
     def __str__(self):
         return (
             f"{self.nombre} ({self.especie}, {self.raza}, {self.edad} años, "
-            f"{self.peso}kg) - Dueño: {self.dueno.nombre}"
+            f"{self.peso}kg) - Documento dueño: {self.documento_dueno}"
         )
 
     def to_dict(self):
@@ -74,16 +71,12 @@ class Mascota:
             "edad": self.edad,
             "peso": self.peso,
             "motivo": self.motivo,
-            "dueno_documento": self.dueno.documento,
+            "dueno_documento": self.documento_dueno,
             "consultas": [consulta.to_dict() for consulta in self.consultas]
         }
 
     @classmethod
     def from_dict(cls, data, duenos):
-        dueno = next(
-            (d for d in duenos if d.documento == data["dueno_documento"]),
-            None
-        )
         mascota = cls(
             data["nombre"],
             data["especie"],
@@ -91,9 +84,10 @@ class Mascota:
             data["edad"],
             data["peso"],
             data["motivo"],
-            dueno
+            data["dueno_documento"]
         )
-        mascota.consultas = [Consulta.from_dict(c) for c in data["consultas"]]
+        mascota.consultas = [Consulta.from_dict(c)
+                             for c in data.get("consultas", [])]
         return mascota
 
 
@@ -112,10 +106,9 @@ class Consulta:
 
     def to_dict(self):
         return {
-            "mascota": self.mascota.nombre,
             "fecha": self.fecha,
-            "diagnostico": self.diagnostico,
-            "tratamiento": self.tratamiento
+            "motivo": self.motivo,
+            "diagnostico": self.diagnostico
         }
 
     @classmethod
@@ -124,5 +117,5 @@ class Consulta:
             data["fecha"],
             data["motivo"],
             data["diagnostico"],
-            None  # El dueño ya estará conectado desde Mascota
+            None
         )
