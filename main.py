@@ -17,7 +17,7 @@ def main():
 
         try:
             if opcion == "1":
-                sistema.registrar_paciente_completo()
+                sistema.registrar_paciente_completo()  
             elif opcion == "2":
                 sistema.registrar_consulta()
             elif opcion == "3":
