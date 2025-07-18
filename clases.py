@@ -46,8 +46,9 @@ class Mascota:
         self.edad = edad
         self.peso = peso
         self.motivo = motivo
-        self.dueno = dueno
+        self.documento_dueno = dueno.documento
         self.consultas = []
+
         logging.info(
             (
                 f"Mascota creada: {self.nombre} ({self.especie}) - "
