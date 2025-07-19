@@ -14,6 +14,7 @@ class SistemaVeterinario:
     def __init__(self):
         self.mascotas = []
         self.duenos = []
+        self.consultas = []
         logging.info("Sistema Veterinario iniciado.")
         self.cargar_datos()  # 🧠 Esto carga los datos al iniciar
 
@@ -39,20 +40,32 @@ class SistemaVeterinario:
             logging.error(f"Error al cargar datos: {e}")
 
     def guardar_datos(self):
-        logging.info("Guardando datos del sistema...")
-        # Guardar datos en los archivos JSON
         try:
-            with open('data/duenos.json', 'w', encoding='utf-8') as f:
+            logging.info("Guardando datos del sistema...")
+
+            with open("data/duenos.json", "w", encoding="utf-8") as f:
                 json.dump(
                     [dueno.to_dict() for dueno in self.duenos],
-                    f, indent=4, ensure_ascii=False
+                    f,
+                    indent=4
                 )
-            with open('data/mascotas.json', 'w', encoding='utf-8') as f:
+
+            with open("data/mascotas.json", "w", encoding="utf-8") as f:
                 json.dump(
                     [mascota.to_dict() for mascota in self.mascotas],
-                    f, indent=4, ensure_ascii=False
+                    f,
+                    indent=4
                 )
-            logging.info("Datos guardados exitosamente.")
+
+            with open("data/consultas.json", "w", encoding="utf-8") as f:
+                json.dump(
+                    [consulta.to_dict() for consulta in self.consultas],
+                    f,
+                    indent=4
+                )
+
+            print("📦 Se ha guardado toda la información en JSON.")
+
         except Exception as e:
             logging.error(f"Error al guardar datos: {e}")
 
