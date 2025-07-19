@@ -92,11 +92,12 @@ class Mascota:
 
 
 class Consulta:
-    def __init__(self, fecha, motivo, diagnostico, mascota):
+    def __init__(self, fecha, motivo, diagnostico, mascota, tratamiento=None):
         self.fecha = fecha
         self.motivo = motivo
         self.diagnostico = diagnostico
         self.mascota = mascota
+        self.tratamiento = tratamiento
 
     def __str__(self):
         return (
@@ -108,7 +109,9 @@ class Consulta:
         return {
             "fecha": self.fecha,
             "motivo": self.motivo,
-            "diagnostico": self.diagnostico
+            "diagnostico": self.diagnostico,
+            "mascota": self.mascota,
+            "tratamiento": self.tratamiento
         }
 
     @classmethod
@@ -117,5 +120,6 @@ class Consulta:
             data["fecha"],
             data["motivo"],
             data["diagnostico"],
-            None
+            data.get("mascota", None),
+            data.get("tratamiento", None)
         )
