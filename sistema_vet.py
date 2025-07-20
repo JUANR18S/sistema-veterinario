@@ -201,6 +201,7 @@ class SistemaVeterinario:
 
         consulta = Consulta(fecha, motivo, diagnostico, mascota)
         mascota.agregar_consulta(consulta)
+        self.consultas.append(consulta)
 
         print(f"✅ ¡Consulta registrada exitosamente para {mascota.nombre}! 💙")
         logging.info(f"Consulta registrada para: {mascota.nombre}")
