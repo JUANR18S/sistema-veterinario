@@ -1,6 +1,16 @@
 __pycache__/
 *.pyc
+
+# Entorno virtual
 env/
+
+# Configuraciones locales de VS Code
 .vscode/
-clinica_veterinaria.log
+
+# Archivos de log
 *.log
+
+# Archivos de datos
+data/
+*.json
+*.db
