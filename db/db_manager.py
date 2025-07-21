@@ -32,7 +32,8 @@ def crear_tablas():
                     nombre TEXT NOT NULL,
                     documento TEXT UNIQUE NOT NULL,
                     correo TEXT,
-                    telefono TEXT
+                    telefono TEXT,
+                    direccion TEXT
                 );
             """)
 
