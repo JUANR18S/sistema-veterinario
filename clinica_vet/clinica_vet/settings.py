@@ -25,7 +25,7 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # tu app
+    'interfaz',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +127,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Ruta donde Django buscará archivos estáticos adicionales
+STATICFILES_DIRS = [
+    BASE_DIR / 'interfaz' / 'static',
+]
+
+# Directorio destino para los archivos estáticos recopilados en producción
+STATIC_ROOT = BASE_DIR / 'staticfiles'
