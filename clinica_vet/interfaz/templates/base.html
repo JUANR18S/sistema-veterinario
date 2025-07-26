@@ -3,27 +3,34 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Clínica Veterinaria{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'interfaz/css/estilos.css' %}">
 </head>
 <body>
 
-<header>
-    <img src="{% static 'img/logo.png' %}" alt="Logo de la clínica">
-    <nav>
-        <a href="{% url 'inicio' %}">Inicio</a>
-        <a href="{% url 'servicios' %}">Servicios</a>
-        <a href="{% url 'placeholder' %}">Más</a>
-    </nav>
-</header>
+    <div class="logo-container">
+        <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo">
+    </div>
 
-<main>
-    {% block content %}
-    {% endblock %}
-</main>
-<footer>
-    © 2023 Clínica Veterinaria. Todos los derechos reservados.
-</footer>
+    <nav>
+        <ul class="menu">
+            <li><a href="{% url 'inicio' %}">Inicio</a></li>
+            <li><a href="{% url 'servicios' %}">Servicios</a></li>
+            <li><a href="{% url 'propietario_list' %}">Propietarios</a></li>
+            <li><a href="{% url 'mascota_list' %}">Mascotas</a></li>
+            <li><a href="#">Más</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 Clínica Veterinaria. Todos los derechos reservados.</p>
+    </footer>
 
 </body>
 </html>
+

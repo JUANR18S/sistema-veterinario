@@ -1,12 +1,14 @@
+/* 🎨 Fondo general, fuente y espacio para footer */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #fefefe;
     text-align: center;
-    padding-bottom: 60px; /* Espacio para el footer */
+    padding-bottom: 60px;
 }
 
+/* 🔝 Encabezado (no se usa actualmente pero está disponible) */
 header {
     background-color: #2d6a4f;
     color: white;
@@ -17,35 +19,53 @@ header {
     align-items: center;
 }
 
-header img {
-    width: 50px; /* Cambia este valor según el tamaño deseado */
+/* 🐾 Estilo del logo */
+.logo-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.logo {
+    width: 200px;
     height: auto;
-    margin-bottom: 10px;
+    display: block;
+    margin: 0 auto;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* 📑 Navegación principal */
 nav {
     margin-top: 10px;
 }
 
-nav a {
-    color: #d4d4d4;
+.menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.menu li a {
+    color: #2d6a4f;
     text-decoration: none;
-    margin: 0 15px;
     font-weight: bold;
     transition: color 0.3s;
 }
 
-nav a:hover {
-    color: #ffffff;
+.menu li a:hover {
+    color: #40916c;
     text-decoration: underline;
 }
 
+/* 🧾 Área principal del contenido */
 main {
     padding: 20px;
 }
 
+/* 👣 Pie de página fijo */
 footer {
     background-color: #2d6a4f;
     color: white;
@@ -54,4 +74,49 @@ footer {
     width: 100%;
     bottom: 0;
     font-size: 0.9rem;
+}
+
+/* 🧩 Tarjeta de formulario */
+.form-container {
+    max-width: 420px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 2px solid #2d6a4f;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #2d6a4f;
+    margin-bottom: 20px;
+}
+
+/* ✏️ Campos del formulario */
+form input, form select, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* ✅ Botón personalizado */
+.btn-guardar {
+    background-color: #2d6a4f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn-guardar:hover {
+    background-color: #40916c;
 }

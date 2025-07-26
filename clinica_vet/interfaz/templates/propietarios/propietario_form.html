@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Registrar Propietario{% endblock %}
+{% block content %}
+
+<div class="form-container">
+  <h2>Registrar nuevo propietario</h2>
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn-guardar">Guardar</button>
+  </form>
+  <p style="text-align: center;"><a href="{% url 'propietario_list' %}">Volver al listado</a></p>
+</div>
+
+{% endblock %}
+

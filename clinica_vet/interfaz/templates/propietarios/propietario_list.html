@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Listado de Propietarios{% endblock %}
+{% block content %}
+  <h2>Propietarios registrados</h2>
+  <p><a href="{% url 'propietario_create' %}">Registrar nuevo propietario</a></p>
+  <ul>
+      {% for propietario in propietarios %}
+          <li>{{ propietario.nombre }} – {{ propietario.telefono }} – {{ propietario.email }}</li>
+      {% empty %}
+          <li>No hay propietarios registrados.</li>
+      {% endfor %}
+  </ul>
+  <p><a href="{% url 'inicio' %}">Volver al inicio</a></p>
+{% endblock %}
