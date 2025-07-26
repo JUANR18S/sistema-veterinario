@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('interfaz.urls')),
     path('admin/', admin.site.urls),
+    path(
+        '',
+        include('interfaz.urls', namespace='interfaz')
+    ),  # ✅ usa namespace
 ]

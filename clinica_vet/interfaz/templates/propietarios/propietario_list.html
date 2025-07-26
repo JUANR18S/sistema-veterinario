@@ -1,14 +1,43 @@
 {% extends "base.html" %}
 {% block title %}Listado de Propietarios{% endblock %}
 {% block content %}
-  <h2>Propietarios registrados</h2>
-  <p><a href="{% url 'propietario_create' %}">Registrar nuevo propietario</a></p>
-  <ul>
-      {% for propietario in propietarios %}
-          <li>{{ propietario.nombre }} – {{ propietario.telefono }} – {{ propietario.email }}</li>
-      {% empty %}
-          <li>No hay propietarios registrados.</li>
-      {% endfor %}
-  </ul>
-  <p><a href="{% url 'inicio' %}">Volver al inicio</a></p>
+<h2>Propietarios registrados</h2>
+
+<div class="tabla-container">
+  <a href="{% url 'interfaz:inicio' %}">Inicio</a>
+  <a href="{% url 'interfaz:propietario_list' %}">Propietarios</a>
+  <a href="{% url 'interfaz:propietario_create' %}">Registrar nuevo propietario</a>
+
+  {% if propietarios %}
+    <table class="tabla-estilo">
+      <thead>
+        <tr>
+          <th>Documento</th>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Email</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for propietario in propietarios %}
+          <tr>
+            <td>{{ propietario.documento }}</td>
+            <td>{{ propietario.nombre }}</td>
+            <td>{{ propietario.telefono }}</td>
+            <td>{{ propietario.email }}</td>
+            <td>
+              <a href="{% url 'interfaz:propietario_editar' propietario.id %}" class="btn-editar">✏️</a>
+              <a href="{% url 'interfaz:propietario_eliminar' propietario.id %}" class="btn-eliminar">🗑️</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No hay propietarios registrados.</p>
+  {% endif %}
+
+  <p><a href="{% url 'interfaz:inicio' %}">Volver al inicio</a></p>
+</div>
 {% endblock %}

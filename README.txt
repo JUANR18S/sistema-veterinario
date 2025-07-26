@@ -37,3 +37,35 @@ Sistema más estable, amigable y resistente a errores del usuario.
 
 👣 Próximo Sprint sugerido:
 Agregar persistencia con archivos `.json` y `.csv` (guardar y cargar datos).
+
+# 🐾 Sistema de Gestión Veterinaria - Sprint 10
+
+Este proyecto es una aplicación web desarrollada en Django que permite gestionar una clínica veterinaria. Fue creado como parte del Sprint 10 del curso de desarrollo de software.
+
+## 🚀 Funcionalidades implementadas
+
+- Registro de **Propietarios** (nombre, teléfono, correo electrónico).
+- Registro de **Mascotas** (nombre, especie, edad, propietario).
+- Listado de propietarios y mascotas.
+- Formularios estilizados con CSS.
+- Menú de navegación superior y logo personalizado.
+- Panel de administración de Django activado.
+
+## 🛠️ Tecnologías utilizadas
+
+- Python 3.13
+- Django 5.2.4
+- HTML + CSS
+- SQLite (base de datos por defecto)
+
+## ⚙️ Instrucciones para ejecutar el proyecto localmente
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tu_usuario/tu_repositorio.git
+   cd tu_repositorio
+
+
+Aplicación: http://127.0.0.1:8000/
+
+Admin: http://127.0.0.1:8000/admin/

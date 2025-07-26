@@ -1,14 +1,14 @@
-/* 🎨 Fondo general, fuente y espacio para footer */
+/* 🎨 Estilo general del sitio */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #fefefe;
     text-align: center;
-    padding-bottom: 60px;
+    padding-bottom: 60px; /* Espacio para el footer fijo */
 }
 
-/* 🔝 Encabezado (no se usa actualmente pero está disponible) */
+/* 🔝 Header general (por si se llega a usar en el futuro) */
 header {
     background-color: #2d6a4f;
     color: white;
@@ -19,7 +19,7 @@ header {
     align-items: center;
 }
 
-/* 🐾 Estilo del logo */
+/* 🐾 Logo de la clínica */
 .logo-container {
     text-align: center;
     margin: 20px 0;
@@ -34,7 +34,7 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 📑 Navegación principal */
+/* 📑 Navegación principal superior */
 nav {
     margin-top: 10px;
 }
@@ -60,12 +60,12 @@ nav {
     text-decoration: underline;
 }
 
-/* 🧾 Área principal del contenido */
+/* 🧾 Contenido principal */
 main {
     padding: 20px;
 }
 
-/* 👣 Pie de página fijo */
+/* 👣 Footer fijo */
 footer {
     background-color: #2d6a4f;
     color: white;
@@ -76,7 +76,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* 🧩 Tarjeta de formulario */
+/* 📋 Tarjeta de formulario (registro de mascota/propietario) */
 .form-container {
     max-width: 420px;
     margin: 40px auto;
@@ -94,17 +94,22 @@ footer {
     margin-bottom: 20px;
 }
 
-/* ✏️ Campos del formulario */
-form input, form select, form textarea {
-    width: 100%;
+/* ✏️ Campos de los formularios */
+form input,
+form select,
+form textarea {
+    width: 95%;
     padding: 10px;
-    margin: 6px 0 16px 0;
+    margin: 6px 0 14px 0;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    border-radius: 0px; /* Bordes rectos */
     font-size: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* ✅ Botón personalizado */
+/* ✅ Botón de guardar */
 .btn-guardar {
     background-color: #2d6a4f;
     color: white;
@@ -119,4 +124,65 @@ form input, form select, form textarea {
 
 .btn-guardar:hover {
     background-color: #40916c;
+}
+
+/* 📊 Tabla de listados (propietarios/mascotas) */
+.tabla-container {
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.tabla-estilo {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla-estilo th, .tabla-estilo td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.tabla-estilo th {
+    background-color: #2d6a4f;
+    color: white;
+}
+
+.tabla-estilo tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+/* 🖋️ Botón editar con ícono */
+.btn-editar {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 10px;
+    margin-right: 4px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-editar:hover {
+    background-color: #0056b3;
+}
+
+/* 🗑️ Botón eliminar con ícono */
+.btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-eliminar:hover {
+    background-color: #c82333;
 }

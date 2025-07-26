@@ -6,7 +6,7 @@ class PropietarioForm(forms.ModelForm):
     """Formulario para crear y actualizar propietarios."""
     class Meta:
         model = Propietario
-        fields = ['nombre', 'telefono', 'email']
+        fields = ['documento', 'nombre', 'telefono', 'email']
 
 
 class MascotaForm(forms.ModelForm):
