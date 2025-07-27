@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Listado de Propietarios{% endblock %}
 {% block content %}
+
 <h2>Propietarios registrados</h2>
 
 <div class="tabla-container">
-  <a href="{% url 'interfaz:inicio' %}">Inicio</a>
-  <a href="{% url 'interfaz:propietario_list' %}">Propietarios</a>
+  <!-- Navegación superior -->
   <a href="{% url 'interfaz:propietario_create' %}">Registrar nuevo propietario</a>
 
+  <!-- Tabla de propietarios -->
   {% if propietarios %}
     <table class="tabla-estilo">
       <thead>
@@ -28,7 +29,10 @@
             <td>{{ propietario.email }}</td>
             <td>
               <a href="{% url 'interfaz:propietario_editar' propietario.id %}" class="btn-editar">✏️</a>
-              <a href="{% url 'interfaz:propietario_eliminar' propietario.id %}" class="btn-eliminar">🗑️</a>
+              <form action="{% url 'interfaz:propietario_eliminar' propietario.id %}" method="post" style="display:inline;" onsubmit="return confirm('¿Estás seguro que deseas eliminar este propietario?');">
+              {% csrf_token %}
+              <button type="submit" class="btn-eliminar">🗑️</button>
+              </form>
             </td>
           </tr>
         {% endfor %}
@@ -38,6 +42,9 @@
     <p>No hay propietarios registrados.</p>
   {% endif %}
 
+  <!-- Enlace final -->
   <p><a href="{% url 'interfaz:inicio' %}">Volver al inicio</a></p>
 </div>
+
 {% endblock %}
+

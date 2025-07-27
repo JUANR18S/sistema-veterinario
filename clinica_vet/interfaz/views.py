@@ -1,30 +1,30 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Mascota, Propietario
 from .forms import MascotaForm, PropietarioForm
 
 
+# 🏠 Página de inicio
 def inicio(request):
-    """Página de inicio."""
     return render(request, 'inicio.html')
 
 
+# 🩺 Página de servicios
 def servicios(request):
-    """Página de servicios."""
     return render(request, 'servicios.html')
 
 
+# 🛠️ Página en construcción
 def placeholder(request):
-    """Página temporal en construcción."""
     return render(request, 'placeholder.html')
 
 
+# 👤 Crear propietario nuevo
 def propietario_create(request):
-    """Registra un nuevo propietario mediante un formulario."""
     if request.method == 'POST':
         form = PropietarioForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('propietario_list')
+            return redirect('interfaz:propietario_list')  # ✅ con namespace
     else:
         form = PropietarioForm()
     return render(
@@ -34,8 +34,8 @@ def propietario_create(request):
     )
 
 
+# 📋 Ver listado de propietarios
 def propietario_list(request):
-    """Muestra la lista de propietarios existentes."""
     propietarios = Propietario.objects.all()
     return render(
         request,
@@ -44,23 +44,73 @@ def propietario_list(request):
     )
 
 
+# ✏️ Editar un propietario existente
+def propietario_editar(request, pk):
+    propietario = get_object_or_404(Propietario, pk=pk)
+    if request.method == 'POST':
+        form = PropietarioForm(request.POST, instance=propietario)
+        if form.is_valid():
+            form.save()
+            return redirect('interfaz:propietario_list')  # ✅ con namespace
+    else:
+        form = PropietarioForm(instance=propietario)
+    return render(
+        request,
+        'propietarios/propietario_form.html',
+        {'form': form}
+    )
+
+
+# 🗑️ Eliminar un propietario
+def propietario_eliminar(request, pk):
+    propietario = get_object_or_404(Propietario, pk=pk)
+    if request.method == 'POST':
+        propietario.delete()
+        return redirect('interfaz:propietario_list')
+    return render(
+        request,
+        'propietarios/propietario_confirm_delete.html',
+        {'propietario': propietario}
+    )
+
+
+# 🐶 Crear mascota nueva
 def mascota_create(request):
-    """Registra una nueva mascota."""
     if request.method == 'POST':
         form = MascotaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('mascota_list')
+            return redirect('interfaz:mascota_list')
     else:
         form = MascotaForm()
     return render(request, 'mascotas/mascota_form.html', {'form': form})
 
 
+# 🐾 Ver lista de mascotas
 def mascota_list(request):
-    """Lista las mascotas registradas."""
     mascotas = Mascota.objects.select_related('propietario').all()
     return render(
         request,
         'mascotas/mascota_list.html',
         {'mascotas': mascotas}
     )
+
+
+# Editar
+def mascota_editar(request, pk):
+    mascota = get_object_or_404(Mascota, pk=pk)
+    if request.method == 'POST':
+        form = MascotaForm(request.POST, instance=mascota)
+        if form.is_valid():
+            form.save()
+            return redirect('interfaz:mascota_list')
+    else:
+        form = MascotaForm(instance=mascota)
+    return render(request, 'mascotas/mascota_form.html', {'form': form})
+
+
+def mascota_eliminar(request, pk):
+    mascota = get_object_or_404(Mascota, pk=pk)
+    if request.method == 'POST':
+        mascota.delete()
+        return redirect('interfaz:mascota_list')

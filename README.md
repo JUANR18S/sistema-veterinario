@@ -104,3 +104,10 @@ Este proyecto es una aplicación de escritorio desarrollada en **Python**, enfoc
 2. Activa tu entorno virtual:
    ```bash
    .\env\Scripts\Activate.ps1   # Windows PowerShell
+
+   ## ⚙️ Configuración del entorno
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/JUANR18S/proyecto-veterinaria.git
+   cd proyecto-veterinaria
