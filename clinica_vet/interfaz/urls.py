@@ -1,4 +1,4 @@
-# urls.py en la app interfaz
+# interfaz/urls.py
 
 from django.urls import path
 from . import views
@@ -30,11 +30,9 @@ urlpatterns = [
         name='propietario_eliminar'
     ),
 
-
-    # CRUD Mascotas (puedes adaptar igual)
+    # CRUD Mascotas
     path('mascotas/', views.mascota_list, name='mascota_list'),
     path('mascotas/crear/', views.mascota_create, name='mascota_create'),
-
     path(
         'mascotas/editar/<int:pk>/',
         views.mascota_editar,
@@ -46,4 +44,9 @@ urlpatterns = [
         name='mascota_eliminar'
     ),
 
+    # ✅ Citas
+    path('citas/', views.cita_list, name='cita_list'),
+    path('citas/crear/', views.cita_create, name='cita_create'),
+    path('citas/<int:pk>/editar/', views.cita_update, name='cita_update'),
+    path('citas/<int:pk>/eliminar/', views.cita_delete, name='cita_delete'),
 ]

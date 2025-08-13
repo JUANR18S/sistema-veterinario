@@ -186,3 +186,8 @@ form textarea {
 .btn-eliminar:hover {
     background-color: #c82333;
 }
+
+.navbar {
+    border-bottom: 1px solid #ddd; /* Línea sutil */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Relieve suave */
+}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Citas{% endblock %}
+{% block content %}
+  <h2>📝Citas</h2>
+
+  <div class="tabla-container">
+      <a href="{% url 'interfaz:cita_create' %}">Registrar nueva cita</a>
+    
+
+      {% if citas %}
+        <table class="tabla-estilo">
+          <thead>
+            <tr>
+              <th>Mascota</th>
+              <th>Propietario</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Motivo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for c in citas %}
+              <tr>
+                <td>{{ c.mascota.nombre }}</td>
+                <td>{{ c.mascota.propietario.nombre }}</td>
+                <td>{{ c.fecha }}</td>
+                <td>{{ c.hora }}</td>
+                <td>{{ c.motivo|truncatechars:40 }}</td>
+                <td>
+                  <a class="btn-editar" href="{% url 'interfaz:cita_update' c.pk %}">✏️</a>
+                  <form method="post" action="{% url 'interfaz:cita_delete' c.pk %}" style="display:inline" onsubmit="return confirm('¿Eliminar esta cita?');">
+                    {% csrf_token %}
+                    <button class="btn-eliminar" type="submit">🗑️</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No hay citas registradas.</p>
+      {% endif %}
+    {% endblock %}
+  </div>
+

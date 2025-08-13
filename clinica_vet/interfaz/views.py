@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Mascota, Propietario
-from .forms import MascotaForm, PropietarioForm
+from .models import Mascota, Propietario, Cita
+from .forms import MascotaForm, PropietarioForm, CitaForm
 
 
 # 🏠 Página de inicio
@@ -96,7 +96,7 @@ def mascota_list(request):
     )
 
 
-# Editar
+# Editar Mascota✍️
 def mascota_editar(request, pk):
     mascota = get_object_or_404(Mascota, pk=pk)
     if request.method == 'POST':
@@ -109,8 +109,68 @@ def mascota_editar(request, pk):
     return render(request, 'mascotas/mascota_form.html', {'form': form})
 
 
+# 🗑️ Eliminar mascota
 def mascota_eliminar(request, pk):
     mascota = get_object_or_404(Mascota, pk=pk)
     if request.method == 'POST':
         mascota.delete()
         return redirect('interfaz:mascota_list')
+
+
+# 🗓️ Lista de citas
+def cita_list(request):
+    citas = Cita.objects.select_related(
+        'mascota',
+        'mascota__propietario'
+    ).all()
+    return render(
+        request,
+        'citas/cita_list.html',
+        {'citas': citas}
+    )
+
+
+# Crear cita
+def cita_create(request):
+    form = CitaForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('interfaz:cita_list')
+    return render(
+        request,
+        'citas/cita_form.html',
+        {
+            'form': form,
+            'titulo': 'Crear cita'
+        }
+    )
+
+
+# Editar/actualizar cita
+def cita_update(request, pk):
+    cita = get_object_or_404(Cita, pk=pk)
+    form = CitaForm(request.POST or None, instance=cita)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('interfaz:cita_list')
+    return render(
+        request,
+        'citas/cita_form.html',
+        {
+            'form': form,
+            'titulo': 'Editar cita'
+        }
+    )
+
+
+# Eliminar cita (con confirmación simple)
+def cita_delete(request, pk):
+    cita = get_object_or_404(Cita, pk=pk)
+    if request.method == 'POST':
+        cita.delete()
+        return redirect('interfaz:cita_list')
+    return render(
+        request,
+        'citas/cita_confirm_delete.html',
+        {'cita': cita}
+    )

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ titulo }}{% endblock %}
+{% block content %}
+<div class="form-container">
+  <h2>{{ titulo }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn-guardar" type="submit">Guardar</button>
+  </form>
+  <p style="text-align:center;"><a href="{% url 'interfaz:cita_list' %}">Volver al listado</a></p>
+</div>
+{% endblock %}
+

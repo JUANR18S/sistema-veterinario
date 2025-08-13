@@ -13,13 +13,14 @@
         <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo">
     </div>
 
-    <nav>
+    <nav class="navbar">
         <ul class="menu">
-            <li><a href="{% url 'interfaz:inicio' %}">Volver al inicio</a></li>
+            <li><a href="{% url 'interfaz:inicio' %}">Inicio</a></li>
             <li><a href="{% url 'interfaz:servicios' %}">Servicios</a></li>
             <li><a href="{% url 'interfaz:propietario_list' %}">Propietarios</a></li>
             <li><a href="{% url 'interfaz:mascota_list' %}">Mascotas</a></li>
-            <li><a href="#">Más</a></li>
+            <li><a href="{% url 'interfaz:cita_list' %}">Citas</a></li>
+            <li>Más</li>
         </ul>
     </nav>
 
