@@ -1,6 +1,6 @@
 # 🐾 Sistema de Gestión Veterinaria
 
-Este proyecto es una aplicación de escritorio desarrollada en **Python**, enfocada en la gestión integral de una clínica veterinaria. Permite registrar pacientes, consultas, y gestionar la información de dueños y mascotas, utilizando archivos **JSON** y una base de datos **SQLite** para la persistencia de datos.
+Este proyecto es una aplicación web(beta) desarrollada en **Python**, enfocada en la gestión integral de una clínica veterinaria. Permite registrar pacientes, consultas, y gestionar la información de dueños y mascotas, utilizando archivos **JSON** y una base de datos **SQLite** para la persistencia de datos.
 
 ---
 
